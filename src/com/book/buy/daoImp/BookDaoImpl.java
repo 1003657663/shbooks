@@ -30,7 +30,7 @@ public class BookDaoImpl implements BookDao{
 	public void addBook(BookVo book) throws SQLException{
 		String sql = "insert into book(name, userID, majorID, pubNumber, oldGrade, publicYear, author,"
 				+ " hasNote, imagePath, description, bookNum, price, canBargain, time, state) "
-				+ " values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ " values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		runner.update(conn, sql, book.getName(), book.getUserID(), book.getMajorID(), 
 			book.getPubNumber(), book.getOldGrade(), book.getPublicYear(), 
 			book.getAuthor(), book.getHasNote(), book.getImagePath(), 
@@ -64,22 +64,21 @@ public class BookDaoImpl implements BookDao{
 			+ " state from book where id = ?";
 	    return runner.query(conn, sql, new BeanHandler<BookVo>(BookVo.class), id);
 	}
+
+	@Override
+	public Integer getLastInfertID() throws SQLException {
+	    String sql = "SELECT LAST_INSERT_ID();";
+	    return runner.query(sql, new BeanHandler<Integer>(Integer.class));
+	}
 	
 	@Override
-	public List<BookVo> findLatestBook() throws SQLException {
+	public List<BookVo> findLatestBook(Integer tim) throws SQLException {
 	    String sql = "select id, name, userID, majorID, pubNumber, oldGrade, publicYear, author,"
 			+ " hasNote, imagePath, description, bookNum, price, canBargain, time,"
-			+ " state from book order by time desc";
-	    return runner.query(conn, sql, new BeanListHandler<BookVo>(BookVo.class));
+			+ " state from book order by time desc limit 1, ?";
+	    return runner.query(conn, sql, new BeanListHandler<BookVo>(BookVo.class), tim);
 	}
 	
-	@Override
-	public BookVo findByNameAndUserIDAndAuthor(String name, String author) throws SQLException {
-	    	String sql = "select id, name, userID, majorID, pubNumber, oldGrade, publicYear, author, hasNote, imagePath,"
-	    		+ " description, bookNum, price, canBargain, time, state from book where name = ? and author = ? and name = description";
-	    	return runner.query(conn, sql, new BeanHandler<BookVo>(BookVo.class), name, author);
-	}
-
 	@Override
 	public List<BookVo> findAllByName(String name) throws SQLException{
 		String sql = "select id, name, userID, majorID, pubNumber, oldGrade, publicYear, author, hasNote,"
@@ -126,6 +125,27 @@ public class BookDaoImpl implements BookDao{
 			+ " imagePath, description, bookNum, price, canBargain, time, state from book where majorID = ?"
 			+ " limit ?, ?";
 	    return runner.query(conn, sql, new BeanListHandler<BookVo>(BookVo.class), majorID, start, length);
+	}
+
+	@Override
+	public List<BookVo> findAlByMajorName(String name) throws SQLException {
+	    String sql = "select id, name, userID, majorID, pubNumber, oldGrade, publicYear, author, hasNote,"
+		+ " imagePath, description, bookNum, price, canBargain, time, state from book where majorID in "
+		+ "(select id from major where name = ?)";
+	    return runner.query(conn, sql, new BeanListHandler<BookVo>(BookVo.class), name);
+	}
+
+	@Override
+	public List<BookVo> findAlByMajorName(String name, Integer start, Integer length) throws SQLException {
+	    String sql = "select id, name, userID, majorID, pubNumber, oldGrade, publicYear, author, hasNote,"
+			+ " imagePath, description, bookNum, price, canBargain, time, state from book where majorID in "
+			+ "(select id from major where name = ?) limit ?, ?";
+		    return runner.query(conn, sql, new BeanListHandler<BookVo>(BookVo.class), name, start, length);
+	}
+
+	@Override
+	public List<BookVo> findAllByPart(String sql) throws SQLException {
+	    return runner.query(conn, sql, new BeanListHandler<BookVo>(BookVo.class));
 	}
 
 	@Override

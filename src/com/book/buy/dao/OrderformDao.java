@@ -11,30 +11,30 @@ public interface OrderformDao
      * 添加购物车 
      * 
      */
-    public void addOrderform(OrderFormVo orderform) throws SQLException;
+    void addOrderform(OrderFormVo orderform) throws SQLException;
     
     /** 
      * 删除购物车item  
      */
-    public void delOrderform(Integer userID, Integer bookID) throws SQLException;
+    void delOrderform(Integer userID, Integer bookID) throws SQLException;
     
     /** 
      * 更新购物车item数据  
      */
-    public void updateOrderform(OrderFormVo orderform) throws SQLException;
+    void updateOrderform(OrderFormVo orderform) throws SQLException;
     
     /** 
      * 根据用户id和书籍id进行查询  
      */
-    public OrderFormVo findByuseridandbookid(Integer userID, Integer bookID) throws SQLException;
+    OrderFormVo findByuseridandbookid(Integer userID, Integer bookID) throws SQLException;
     
     /** 
      * 根据用户id查询所有item 
      */
-    public List<OrderFormVo> findAllitem(Integer userID) throws SQLException;
+    List<OrderFormVo> findAllitem(Integer userID) throws SQLException;
     
     /** 
      * 释放链接  
      */
-    public void close() throws SQLException;
+    void close() throws SQLException;
 }

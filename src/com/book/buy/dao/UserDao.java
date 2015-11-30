@@ -15,21 +15,21 @@ public interface UserDao{
 	 * @param user
 	 * @throws SQLException
 	 */
-	public void addUser(UserVo user) throws SQLException;
+	void addUser(UserVo user) throws SQLException;
 	
 	/**
 	 * 按照用户名去删除用户
 	 * @param name
 	 * @throws SQLException
 	 */
-	public void deleteUser(String name) throws SQLException;
+	void deleteUser(String name) throws SQLException;
 	
 	/**
 	 * 修改用户用户
 	 * @param user
 	 * @throws SQLException
 	 */
-	public void updateUser(UserVo user) throws SQLException;
+	void updateUser(UserVo user) throws SQLException;
 	
 	/**
 	 * 按照用户名去查找用户
@@ -37,11 +37,19 @@ public interface UserDao{
 	 * @return
 	 * @throws SQLException
 	 */
-	public UserVo findUserByName(String name) throws SQLException;
+	UserVo findUserByName(String name) throws SQLException;
+	
+	/**
+	 * 按照用户ID去查找用户
+	 * @param ID
+	 * @return
+	 * @throws SQLException
+	 */
+	UserVo findUserById(Integer ID) throws SQLException;
 	
 	/**
 	 * 释放连接
 	 * @param conn
 	 */
-	public void close();
+	void close();
 }

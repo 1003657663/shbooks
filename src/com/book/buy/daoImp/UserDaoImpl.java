@@ -26,7 +26,7 @@ public class UserDaoImpl implements UserDao{
 	
 	@Override
 	public void addUser(UserVo user) throws SQLException{
-		String sql = "insert into user(name, headPhoto, password, majorID, time,"
+		String sql = "insert into user(name, username, headPhoto, password, majorID, time,"
 				+ " qq, phoneNumber, complainNum) values(?, ?, ?, ?, ?, ?, ?, ?)";
 		runner.update(conn, sql, user.getName(), user.getHeadPhoto(), user.getPassword(),
 			user.getMajorID(), user.getTime(), user.getQq(), 
@@ -41,18 +41,26 @@ public class UserDaoImpl implements UserDao{
 
 	@Override
 	public void updateUser(UserVo user) throws SQLException{
-		String sql = "update user set name = ?, headPhoto = ?, password = ?, majorID = ?,"
+		String sql = "update user set name = ?, username = ?, headPhoto = ?, password = ?, majorID = ?,"
 				+ " time = ?, qq = ?, phoneNumber = ?, complainNum = ? where id = ?";
-		runner.update(conn, sql, user.getName(), user.getPassword(), user.getHeadPhoto(), 
-			user.getMajorID(), user.getTime(), user.getQq(), 
-			user.getPhoneNumber(), user.getComplainNum(), user.getId());
+		runner.update(conn, sql, user.getName(), user.getUsername(), 
+			user.getHeadPhoto(), user.getPassword(),user.getMajorID(), 
+			user.getTime(), user.getQq(), user.getPhoneNumber(), 
+			user.getComplainNum(), user.getId());
 	}
 
 	@Override
 	public UserVo findUserByName(String name) throws SQLException{
-		String sql = "select id, name, headPhoto, password, majorID, time,"
+		String sql = "select id, name, username, headPhoto, password, majorID, time,"
 				+ " qq, phoneNumber, complainNum from user where name = ?";
 		return runner.query(conn, sql, new BeanHandler<UserVo>(UserVo.class), name);
+	}
+
+	@Override
+	public UserVo findUserById(Integer ID) throws SQLException {
+	    	String sql = "select id, name, username, headPhoto, password, majorID, time,"
+			+ " qq, phoneNumber, complainNum from user where id = ?";
+	    	return runner.query(conn, sql, new BeanHandler<UserVo>(UserVo.class), ID);
 	}
 
 	@Override
@@ -66,5 +74,4 @@ public class UserDaoImpl implements UserDao{
 			e.printStackTrace();
 		}
 	}
-
 }

@@ -14,21 +14,21 @@ public interface BuyDao {
      * @param buyVo
      * @throws SQLException
      */
-    public void addBuy(BuyVo buyVo) throws SQLException;
+    void addBuy(BuyVo buyVo) throws SQLException;
     
     /**
      * 按照OrderId删除
      * @param orderID
      * @throws SQLException
      */
-    public void delBuyByOrderID(int orderID) throws SQLException;
+    void delBuyByOrderID(int orderID) throws SQLException;
     
     /**
      * 按照userID删除
      * @param userID
      * @throws SQLException
      */
-    public void delBuyByUserID(int userID) throws SQLException;
+    void delBuyByUserID(int userID) throws SQLException;
     
     /**
      * 按照userID查找
@@ -36,7 +36,7 @@ public interface BuyDao {
      * @return
      * @throws SQLException
      */
-    public BuyVo getBuyByUserID(int userID) throws SQLException;
+    BuyVo getBuyByUserID(int userID) throws SQLException;
     
     /**
      * 按照orderid查找
@@ -44,5 +44,5 @@ public interface BuyDao {
      * @return
      * @throws SQLException
      */
-    public BuyVo getBuyByOrderID(int orderID) throws SQLException;
+    BuyVo getBuyByOrderID(int orderID) throws SQLException;
 }

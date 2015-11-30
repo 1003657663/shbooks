@@ -16,21 +16,21 @@ public interface SellDao {
      * @param sellvo
      * @throws SQLException
      */
-    public void addSell(SellVo sellvo) throws SQLException;
+    void addSell(SellVo sellvo) throws SQLException;
     
     /**
      * 图书上架
      */
-    public void upBook(int bid) throws SQLException;
+    void upBook(int bid) throws SQLException;
 
     /**
      * 图书下架
      */
-    public void downBook(int bid) throws SQLException;
+    void downBook(int bid) throws SQLException;
 
     /**
      * close
      */
-    public void close();
+    void close();
 
 }

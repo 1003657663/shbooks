@@ -11,11 +11,7 @@
 <%UserVo userVo = (UserVo) session.getAttribute("user");%>
 <%Boolean isLogin;%>
 <%
-    if (userVo != null) {
-        isLogin = true;
-    } else {
-        isLogin = false;
-    }
+    isLogin = userVo != null;
 %>
 <%request.setAttribute("isLogin", isLogin);%>
 <div id="head">
@@ -24,12 +20,13 @@
             <c:if test="${isLogin}">
                 <ul class="navigat">
                     <li>${user.name}</li>
+                    <li>消息</li>
                 </ul>
             </c:if>
             <c:if test="${!isLogin}">
                 <ul class="navigat">
-                    <li>请登录!</li>
-                    <li>注册</li>
+                    <li><a href="/login">请登录!</a></li>
+                    <li><a href="/register">注册</a></li>
                 </ul>
             </c:if>
             <ul class="navigat top-sell-book">

@@ -1,7 +1,7 @@
 package com.book.buy.vo;
 
 /**
- * Created by violet on 2015/10/28.
+ * Created by Nvpiao on 2015/10/28.
  */
 public class UserVo {
     /**
@@ -11,6 +11,7 @@ public class UserVo {
     
     private Integer id;
     private String name;
+    private String username;
     private String headPhoto;
     private String password;
     private Integer majorID;
@@ -24,10 +25,11 @@ public class UserVo {
 	// TODO Auto-generated constructor stub
     }
 
-    public UserVo(String name, String headPhoto, String password, Integer majorID, String time, String qq,
-	    String phoneNumber, Integer complainNum) {
+    public UserVo(String name, String username, String headPhoto, String password, Integer majorID, String time,
+	    String qq, String phoneNumber, Integer complainNum) {
 	super();
 	this.name = name;
+	this.username = username;
 	this.headPhoto = headPhoto;
 	this.password = password;
 	this.majorID = majorID;
@@ -37,11 +39,12 @@ public class UserVo {
 	this.complainNum = complainNum;
     }
 
-    public UserVo(Integer id, String name, String headPhoto, String password, Integer majorID, String time, String qq,
-	    String phoneNumber, Integer complainNum) {
+    public UserVo(Integer id, String name, String username, String headPhoto, String password, Integer majorID,
+	    String time, String qq, String phoneNumber, Integer complainNum) {
 	super();
 	this.id = id;
 	this.name = name;
+	this.username = username;
 	this.headPhoto = headPhoto;
 	this.password = password;
 	this.majorID = majorID;
@@ -65,6 +68,14 @@ public class UserVo {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getHeadPhoto() {
@@ -129,8 +140,8 @@ public class UserVo {
 
     @Override
     public String toString() {
-	return "UserVo [id=" + id + ", name=" + name + ", headPhoto=" + headPhoto + ", password=" + password
-		+ ", majorID=" + majorID + ", time=" + time + ", qq=" + qq + ", phoneNumber=" + phoneNumber
-		+ ", complainNum=" + complainNum + "]";
+	return "UserVo [id=" + id + ", name=" + name + ", username=" + username + ", headPhoto=" + headPhoto
+		+ ", password=" + password + ", majorID=" + majorID + ", time=" + time + ", qq=" + qq + ", phoneNumber="
+		+ phoneNumber + ", complainNum=" + complainNum + "]";
     }
 }

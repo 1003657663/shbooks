@@ -37,7 +37,7 @@ public class IndexServlet extends HttpServlet {
             req.setAttribute("majorVosDep",majorVos);
             req.setAttribute("majorVosName",majorVos1);
             //-----------------获取最新上架的书籍
-            List<BookVo> bookLastVos = bookDao.findLatestBook();//这里需要参数@import
+            List<BookVo> bookLastVos = bookDao.findLatestBook(5);//这里需要参数@import
             req.setAttribute("bookLastVos",bookLastVos);
 
             bookDao.close();

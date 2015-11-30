@@ -40,7 +40,14 @@ public class LocationDaoImp implements LocationDao{
     }
 
     @Override
-    public void close() throws SQLException {
-        conn.close();
-    }
+	public void close(){
+		try{
+		    if(conn != null)
+			conn.close();
+		} 
+		catch (SQLException e){
+		   // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}
+	}
 }

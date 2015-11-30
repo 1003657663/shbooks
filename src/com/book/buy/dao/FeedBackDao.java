@@ -11,25 +11,27 @@ public interface FeedBackDao {
          * @param FeedBack
          * @throws SQLException
          */
-	 public void addFeedBack(FeedBackVo FeedBack)throws SQLException;
+		void addFeedBack(FeedBackVo FeedBack)throws SQLException;
 	 
 	 /**
 	  * 删除反馈信息
 	  * @param userId
 	  * @throws SQLException
 	  */
-	 public void deleteFeedBack(int userId)throws SQLException;
+	 void deleteFeedBack(int userId)throws SQLException;
 	 
 	 /**
-	  * 根据userid显示反馈信息
+	  * 显示反馈信息
 	  * @param userId
 	  * @return
 	  * @throws SQLException
 	  */
-	 public List<FeedBackVo> showFeedBack(int userId)throws SQLException;
+	 List<FeedBackVo> showFeedBack()throws SQLException;
 	 
 	 /**
 	  * 释放连接
 	  */
-	 public void close();
+	 void close();
+
+	
 }

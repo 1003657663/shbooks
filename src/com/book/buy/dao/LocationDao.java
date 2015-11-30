@@ -15,7 +15,7 @@ public interface LocationDao {
      * @param locationVo
      * @throws SQLException
      */
-    public void addLocation(LocationVo locationVo) throws SQLException;
+    void addLocation(LocationVo locationVo) throws SQLException;
     
     /**
      * 得到Location
@@ -23,13 +23,13 @@ public interface LocationDao {
      * @return
      * @throws SQLException
      */
-    public LocationVo getLocationByuserID(int userID) throws SQLException;
+    LocationVo getLocationByuserID(int userID) throws SQLException;
 
     /**
      * 更新Location
      *
      */
-    public void UpdateLocation(LocationVo locationVo) throws SQLException;
+    void UpdateLocation(LocationVo locationVo) throws SQLException;
 
-    public void close() throws SQLException;
+    void close();
 }
